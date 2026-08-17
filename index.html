@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arcanum</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: #09090d;
+            color: white;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+        }
+
+        .app {
+            display: flex;
+            height: 100vh;
+        }
+
+        .sidebar {
+            width: 220px;
+            background: #111117;
+            border-right: 1px solid #24242d;
+            padding: 25px 15px;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 45px;
+            padding-left: 12px;
+        }
+
+        .menu {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .menu button {
+            border: 0;
+            background: transparent;
+            color: #a7a7b3;
+            padding: 13px 15px;
+            text-align: left;
+            border-radius: 8px;
+            font-size: 15px;
+            cursor: pointer;
+        }
+
+        .menu button:hover {
+            background: #1d1d27;
+            color: white;
+        }
+
+        .content {
+            flex: 1;
+            padding: 35px 45px;
+        }
+
+        .top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .profile {
+            color: #9999a6;
+        }
+
+        .hero {
+            margin-top: 60px;
+            max-width: 800px;
+        }
+
+        .hero h1 {
+            font-size: 58px;
+            margin: 0;
+        }
+
+        .hero p {
+            color: #9b9ba8;
+            font-size: 18px;
+            margin-top: 15px;
+        }
+
+        .play {
+            margin-top: 35px;
+            padding: 16px 55px;
+            border: 0;
+            border-radius: 9px;
+            background: #704cff;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .play:hover {
+            background: #8061ff;
+        }
+
+        .status {
+            margin-top: 45px;
+            background: #12121a;
+            border: 1px solid #24242e;
+            border-radius: 12px;
+            padding: 20px;
+            max-width: 500px;
+        }
+
+        .status-title {
+            font-weight: bold;
+        }
+
+        .status-text {
+            color: #92929e;
+            margin-top: 8px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="app">
+
+    <aside class="sidebar">
+        <div class="logo">Arcanum</div>
+
+        <div class="menu">
+            <button>Главная</button>
+            <button>Серверы</button>
+            <button>Новости</button>
+            <button>Настройки</button>
+        </div>
+    </aside>
+
+    <main class="content">
+
+        <div class="top">
+            <div>Главная</div>
+            <div class="profile">Игрок</div>
+        </div>
+
+        <section class="hero">
+            <h1>Arcanum</h1>
+
+            <p>
+                Добро пожаловать в твой игровой мир.
+            </p>
+
+            <button class="play" id="launchBtn">
+                ИГРАТЬ
+            </button>
+
+            <div class="status">
+                <div class="status-title">
+                    Minecraft 1.21.1
+                </div>
+
+                <div class="status-text">
+                    Клиент готов к запуску
+                </div>
+            </div>
+<script>
+document.getElementById("launchBtn").onclick = async function() {
+    try {
+       const nick = "Игрок"; 
+
+        const result = await window.electronAPI.launchMinecraft(nick);
+
+        if (!result || !result.success) {
+            alert("Ошибка запуска: " + (result?.error || "неизвестная ошибка"));
+        }
+    } catch (error) {
+        alert("Ошибка запуска: " + error.message);
+        console.error(error);
+    }
+};
+</script>
+
+
+</body>
+</html>
+  
